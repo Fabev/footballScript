@@ -3,29 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic;
 
 class HomeController extends Controller
 {
-    public function generate(Request $request){
-        $img = ImageManagerStatic::make(public_path('img/convocati.png'));
-        $img->text("CONVOCATI", 86, 130, function($font) {
-            $font->file(public_path('fonts/Roboto.ttf'));
-            $font->size(130);
-            $font->color('#ffffff');
-            $font->align('left');
-            $font->valign('bottom');
-            $font->angle(0);
-        });
-        $img->insert(public_path('img/divider.png'), 'top-left', 60, 180);
-        $img->text("PORTIERI", 86, 230, function($font) {
-            $font->file(public_path('fonts/Roboto.ttf'));
-            $font->size(50);
-            $font->color('#ffffff');
-            $font->align('left');
-            $font->valign('bottom');
-            $font->angle(0);
-        });
-        $img->save(public_path('img/convocati.jpg'));
+    const players = [
+        'bruno', 'capussela', 'cardinale', 'carnevale', 'carnevale-d', 'cicero', 'colaianni', 'farella', 'fazio',
+        'giannini', 'lagravinese', 'laneve', 'leo', 'linzalone', 'mangiallardo', 'mastrovito', 'miale', 'napoletano',
+        'pastore', 'racano', 'tassielli', 'tisci', 'trotti', 'vasco', 'ventura'
+    ];
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
+
+    public function halfTime(){
+        return view('halfTime');
+    }
+
+    public function fullTime(){
+        return view('fullTime');
+    }
+
+    public function startingEleven(){
+        $players = self::players;
+        return view('startingEleven', compact('players'));
     }
 }

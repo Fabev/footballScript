@@ -13,8 +13,16 @@
 
 Route::get('/', function () {
     return view('welcome');
+})->name('index');
+Route::post('login', 'UserController@login')->name('login');
+
+Route::group(['middleware' => ['access']], function (){
+    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+    Route::get('generate', 'HomeController@generate')->name('generate');
+    Route::post('generate', 'ImageController@generate')->name('generate');
+    Route::get('halfTime', 'HomeController@halfTime')->name('halfTime');
+    Route::get('fullTime', 'HomeController@fullTime')->name('fullTime');
+    Route::get('startingEleven', 'HomeController@startingEleven')->name('startingEleven');
+
+    Route::get('/home', 'HomeController@index')->name('home');
 });
-
-Route::get('generate', 'HomeController@generate');
-
-
