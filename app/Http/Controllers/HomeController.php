@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     const players = [
-        'bruno', 'capussela', 'cardinale', 'carnevale', 'carnevale-d', 'cicero', 'colaianni', 'farella', 'fazio',
-        'giannini', 'lagravinese', 'laneve', 'leo', 'linzalone', 'mangiallardo', 'mastrovito', 'miale', 'napoletano',
-        'pastore', 'racano', 'tassielli', 'tisci', 'trotti', 'vasco', 'ventura'
+        'abrusci', 'antonicelli', 'bruno', 'capussela', 'cardinale', 'carnevale', 'carnevale-d', 'cicero', 'colaianni', 'farella', 'fazio',
+        'giannini', 'lagravinese', 'laneve', 'leo', 'linzalone', 'mangiallardo', 'mastrovito', 'miale', 'napoletano', 'pastore', 'racano',
+        'sciavilla', 'tafuni',  'tassielli-m', 'tassielli-v', 'tisci', 'trotti', 'vasco', 'ventura'
     ];
 
     /**

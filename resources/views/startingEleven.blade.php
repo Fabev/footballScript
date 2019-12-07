@@ -5,6 +5,12 @@
         <form method="post" action="{{route('generate')}}">
             @csrf
             <input type="hidden" name="type" value="starting_eleven">
+            <select name="shirt" class="form-control">
+                <option value="{{\App\Http\Controllers\ImageController::home_prefix}}">Home</option>
+                <option value="{{\App\Http\Controllers\ImageController::away_prefix}}">Away</option>
+            </select>
+            <br/>
+            <br/>
             TITOLARI:
             @for($i=0; $i<11; $i++)
                 <select name="lineup[{{$i}}]" class="form-control">
@@ -18,6 +24,7 @@
                 SUBS
                 @for($i=0; $i<9; $i++)
                     <select name="bench[{{$i}}]" class="form-control">
+                        <option selected hidden></option>
                         @foreach($players as $player)
                             <option value="{{$player}}">{{strtoupper(str_replace('-', ' ', $player))}}</option>
                         @endforeach

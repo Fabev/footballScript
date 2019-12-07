@@ -9,10 +9,20 @@ class ImageController extends Controller
 {
 
     const home_prefix = 'SXI-HOME_';
-    const x_modifier = 320;
-    const y_modifier = 336;
-    const left_margin = 37;
-    const top_margin = 178;
+    const away_prefix = 'SXI-AWAY_';
+    const starting_eleven_post = [
+        'x_modifier' => 320,
+        'y_modifier' => 336,
+        'left_margin' => 37,
+        'top_margin' => 178,
+    ];
+
+    const starting_eleven_history = [
+        'x_modifier' => 313,
+        'y_modifier' => 324,
+        'left_margin' => 79,
+        'top_margin' => 500,
+    ];
 
     public function generate(Request $request){
         switch ($request->type){
@@ -112,15 +122,30 @@ class ImageController extends Controller
     }
 
     private function startingEleven($request){
+        return [
+            $this->startingPost($request->shirt, $request->lineup, $request->bench),
+            $this->startingHistory($request->shirt, $request->lineup, $request->bench),
+        ];
+    }
+
+    private function startingPost($shirt, $lineup, $bench){
         $img = ImageManagerStatic::make(public_path('img/starting.png'));
-        foreach($request->lineup as $key => $player){
-            $x = self::left_margin + ($key % 4 * self::x_modifier);
-            $y = self::top_margin + (intval($key / 4) * self::y_modifier);
-            $img->insert(public_path('img/players/' . self::home_prefix . $player . '.png'), 'top-left', $x, $y);
+        foreach($lineup as $key => $player){
+            $x = self::starting_eleven_post['left_margin'] + ($key % 4 * self::starting_eleven_post['x_modifier']);
+            $y = self::starting_eleven_post['top_margin'] + (intval($key / 4) * self::starting_eleven_post['y_modifier']);
+            $img->insert(public_path('img/players/' .$shirt . $player . '.png'), 'top-left', $x, $y);
         }
-        $img->text("SUBS: " . strtoupper(implode(' - ', $request->bench)), 67, 1200, function($font) {
+        $benched = array();
+        foreach ($bench as $player_bench){
+            if (!$player_bench){
+                continue;
+            }
+            $benched[] = str_replace('-', ' ', $player_bench);
+        }
+
+        $img->text("SUBS: " . strtoupper(implode(' - ', $benched)), 67, 1200, function($font) {
             $font->file(public_path('fonts/RevolutionGothic_It.otf'));
-            $font->size(37);
+            $font->size(32);
             $font->color('#b5b9ba');
             $font->align('left');
             $font->valign('bottom');
@@ -129,6 +154,46 @@ class ImageController extends Controller
 
         $filepath = 'img/lineup_' . uniqid() . '.jpg';
         $img->save(public_path($filepath));
-        return [$filepath];
+        return $filepath;
+    }
+
+    private function startingHistory($shirt, $lineup, $bench){
+        $img = ImageManagerStatic::make(public_path('img/starting_history.png'));
+        foreach($lineup as $key => $player){
+            $x = self::starting_eleven_history['left_margin'] + ($key % 3 * self::starting_eleven_history['x_modifier']);
+            $y = self::starting_eleven_history['top_margin'] + (intval($key / 3) * self::starting_eleven_history['y_modifier']);
+            $img->insert(public_path('img/players/' . $shirt . $player . '.png'), 'top-left', $x, $y);
+        }
+
+        $img->insert(public_path('img/players/mister.png'), 'top-left', 708, 1472);
+
+        $benched = array();
+        foreach ($bench as $player_bench){
+            if (!$player_bench){
+                continue;
+            }
+            $benched[] = str_replace('-', ' ', $player_bench);
+        }
+
+        $img->text("SUBS: " . strtoupper(implode(' - ', array_slice($benched, 0, 4))), 545, 1845, function($font) {
+            $font->file(public_path('fonts/RevolutionGothic_It.otf'));
+            $font->size(30);
+            $font->color('#b5b9ba');
+            $font->align('center');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+        $img->text(strtoupper(implode(' - ', array_slice($benched, 4))), 545, 1875, function($font) {
+            $font->file(public_path('fonts/RevolutionGothic_It.otf'));
+            $font->size(30);
+            $font->color('#b5b9ba');
+            $font->align('center');
+            $font->valign('bottom');
+            $font->angle(0);
+        });
+
+        $filepath = 'img/lineup_story_' . uniqid() . '.jpg';
+        $img->save(public_path($filepath));
+        return $filepath;
     }
 }
