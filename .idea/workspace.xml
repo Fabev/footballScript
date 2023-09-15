@@ -322,7 +322,7 @@
       <workItem from="1644275666155" duration="338000" />
       <workItem from="1694024186349" duration="3011000" />
       <workItem from="1694193795727" duration="8000" />
-      <workItem from="1694793305240" duration="2772000" />
+      <workItem from="1694793305240" duration="3260000" />
     </task>
     <task id="LOCAL-00001" summary="Alignment">
       <option name="closed" value="true" />
@@ -340,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694798926465</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix on position">
+      <option name="closed" value="true" />
+      <created>1694799140975</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694799140975</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
