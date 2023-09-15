@@ -22,7 +22,7 @@ class UserController extends Controller
 
 
     public function login(Request $request){
-        if (Hash::check($request->password, Hash::make('f00tb4llTool'))){
+        if (Hash::check($request->password, Hash::make('QQaazz123'))){
             session()->put('logged', true);
             return redirect()->route('dashboard');
         }

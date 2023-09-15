@@ -3,7 +3,7 @@
     <div class="container">
         <div class="flex-center position-ref full-height">
             <div class="content text-center">
-                <img src="{{asset('img/logo.png')}}" class="m-auto">
+                <img src="{{asset('img/logo.png')}}" class="m-auto logo">
                 <form action="{{route('login')}}" method="post">
                     @csrf
                     <label>

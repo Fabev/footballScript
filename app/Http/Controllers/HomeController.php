@@ -32,12 +32,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function halfTime(){
-        return view('halfTime');
-    }
-
-    public function fullTime(){
-        return view('fullTime');
+    public function files(){
+        return view('files');
     }
 
     public function startingEleven(){

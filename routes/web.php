@@ -23,6 +23,8 @@ Route::group(['middleware' => ['access']], function (){
     Route::get('halfTime', 'HomeController@halfTime')->name('halfTime');
     Route::get('fullTime', 'HomeController@fullTime')->name('fullTime');
     Route::get('startingEleven', 'HomeController@startingEleven')->name('startingEleven');
+    Route::get('files', 'HomeController@files')->name('files');
+    Route::post('upload', 'ImageController@upload')->name('upload');
 
     Route::get('/home', 'HomeController@index')->name('home');
 });
