@@ -57,22 +57,22 @@ class ImageController extends Controller
         if ($type === 'post') {
             $coordinates = [
                 'home' => [
-                    'x' => 998,
+                    'x' => 992,
                     'y' => 500
                 ],
                 'away' => [
-                    'x' => 998,
+                    'x' => 992,
                     'y' => 738
                 ]
             ];
         } else {
             $coordinates = [
                 'home' => [
-                    'x' => 1000,
+                    'x' => 992,
                     'y' => 785
                 ],
                 'away' => [
-                    'x' => 1000,
+                    'x' => 992,
                     'y' => 1020
                 ]
             ];
