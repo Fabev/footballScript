@@ -68,11 +68,11 @@ class ImageController extends Controller
         } else {
             $coordinates = [
                 'home' => [
-                    'x' => 1000,
+                    'x' => 993,
                     'y' => 785
                 ],
                 'away' => [
-                    'x' => 1000,
+                    'x' => 993,
                     'y' => 1020
                 ]
             ];
