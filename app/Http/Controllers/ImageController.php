@@ -57,30 +57,30 @@ class ImageController extends Controller
         if ($type === 'post') {
             $coordinates = [
                 'home' => [
-                    'x' => 989,
-                    'y' => 500
+                    'x' => 448,
+                    'y' => 1187
                 ],
                 'away' => [
-                    'x' => 989,
-                    'y' => 738
+                    'x' => 626,
+                    'y' => 1187
                 ]
             ];
         } else {
             $coordinates = [
                 'home' => [
-                    'x' => 989,
-                    'y' => 785
+                    'x' => 448,
+                    'y' => 1482
                 ],
                 'away' => [
-                    'x' => 989,
-                    'y' => 1020
+                    'x' => 627,
+                    'y' => 1482
                 ]
             ];
         }
         $img = ImageManagerStatic::make($imagepath);
         $img->text($home, $coordinates['home']['x'], $coordinates['home']['y'], function ($font) {
             $font->file(public_path('fonts/atletico-acquaviva.ttf'));
-            $font->size(200);
+            $font->size(145);
             $font->color('#002a49');
             $font->align('center');
             $font->valign('bottom');
@@ -88,7 +88,7 @@ class ImageController extends Controller
         });
         $img->text($away, $coordinates['away']['x'], $coordinates['away']['y'], function ($font) {
             $font->file(public_path('fonts/atletico-acquaviva.ttf'));
-            $font->size(200);
+            $font->size(145);
             $font->color('#002a49');
             $font->align('center');
             $font->valign('bottom');
